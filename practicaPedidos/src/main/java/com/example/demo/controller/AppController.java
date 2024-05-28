@@ -16,41 +16,84 @@ import com.example.demo.service.ESTADO;
 import com.example.demo.service.PedidoService;
 import com.example.demo.service.UserService;
 
+/**
+ * Clase que implementa los servicios de Usuarios y Pedidos.
+ */
 @RestController
 public class AppController {
 
-	@Autowired
-	private PedidoService pedidoService;
-	@Autowired
-	private UserService userService;
+    /**
+     * Servicio de pedidos
+     */
+    @Autowired
+    private PedidoService pedidoService;
 
-	@PostMapping("/createPedido")
-	public void createPedido(@RequestBody Pedido pedido) {
-		pedidoService.crearPedido(pedido);
-	}
+    /**
+     * Servicio de usuarios
+     */
+    @Autowired
+    private UserService userService;
 
-	@GetMapping("/buscarPedido")
-	public ArrayList<Pedido> buscarPedido(@RequestParam long id) {
-		return  pedidoService.buscarPedido(id);
-	}
+    /**
+     * Crea un nuevo pedido
+     * @param pedido que se va a crear
+     */
+    @PostMapping("/createPedido")
+    public void createPedido(@RequestBody Pedido pedido) {
+        pedidoService.crearPedido(pedido);
+    }
 
-	@PutMapping("/procesarPedido")
-	public boolean procesarPedido(@RequestParam long id, @RequestParam ESTADO status) {
-		return pedidoService.procesarPedido(id, status);
-	}
+    /**
+     * Busca un pedido por su Id
+     *
+     * @param id El Id del pedido a buscar
+     * @return Una lista del pedido encontrado
+     */
+    @GetMapping("/buscarPedido")
+    public ArrayList<Pedido> buscarPedido(@RequestParam long id) {
+        return pedidoService.buscarPedido(id);
+    }
 
-	@DeleteMapping("/borrarPedido")
-	public boolean borrarPedido(@RequestParam long id) {
-		return pedidoService.borrarPedido(id);
-	}
+    /**
+     * Procesa un pedido cambiando su estado
+     *
+     * @param id del pedido que se va cambiar su estado
+     * @param status El nuevo estado del pedido
+     * @return true si el pedido se procesó correctamente y false en caso contrario
+     */
+    @PutMapping("/procesarPedido")
+    public boolean procesarPedido(@RequestParam long id, @RequestParam ESTADO status) {
+        return pedidoService.procesarPedido(id, status);
+    }
 
-	@GetMapping("/usersAll")
-	public ArrayList getAllUsers() {
-		return (ArrayList) userService.getAllUsers();
-	}
+    /**
+     * Borra un pedido por su Id
+     *
+     * @param id del pedido que se va a borrar
+     * @return true si el pedido se borra correctamente, false en caso contrario
+     */
+    @DeleteMapping("/borrarPedido")
+    public boolean borrarPedido(@RequestParam long id) {
+        return pedidoService.borrarPedido(id);
+    }
 
-	@GetMapping("/PedidoAll")
-	public ArrayList getAllPedidos() {
-		return (ArrayList) pedidoService.getAllPedidos();
-	}
+    /**
+     * Obtiene todos los usuarios
+     *
+     * @return Una lista de todos los usuarios
+     */
+    @GetMapping("/usersAll")
+    public ArrayList getAllUsers() {
+        return (ArrayList) userService.getAllUsers();
+    }
+
+    /**
+     * Obtiene todos los pedidos
+     *
+     * @return Una lista de todos los pedidos
+     */
+    @GetMapping("/PedidoAll")
+    public ArrayList getAllPedidos() {
+        return (ArrayList) pedidoService.getAllPedidos();
+    }
 }

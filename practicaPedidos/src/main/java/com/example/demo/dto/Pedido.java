@@ -1,14 +1,23 @@
 package com.example.demo.dto;
 
 import com.example.demo.service.ESTADO;
-
+/**
+ * Clase que gestiona los pedidos
+ */
 public class Pedido {
 	private long id_pedido;
 	private float precio;
 	private ESTADO estado;
 	private String fecha;
 	private Usuario usu;
-
+/**
+ * Creacion de un pedido por constructor
+ * @param id_pedido
+ * @param precio
+ * @param estado
+ * @param fecha
+ * @param usu
+ */
 	public Pedido(long id_pedido, float precio, String estado, String fecha, Usuario usu) {
 		this.id_pedido = id_pedido;
 		this.precio = precio;
