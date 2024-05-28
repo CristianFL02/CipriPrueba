@@ -1,5 +1,7 @@
 package com.example.demo.dto;
-
+/**
+ * Clase que gestiona los Usuarios
+ */
 public class Usuario {
 	private int id;
 	private String firstName;
@@ -7,7 +9,15 @@ public class Usuario {
 	private long tlf;
 	private String mail;
 	private String direccion;
-
+/**
+ * Creacion de Usuario por Constructor
+ * @param id
+ * @param firstName
+ * @param lastName
+ * @param tlf
+ * @param mail
+ * @param direccion
+ */
 	public Usuario(int id, String firstName, String lastName, long tlf, String mail, String direccion) {
 		this.id = id;
 		this.firstName = firstName;
@@ -64,7 +74,9 @@ public class Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
+	/**
+	 * Muestra los datos de los usuarios
+	 */
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", tlf=" + tlf + ", mail="
